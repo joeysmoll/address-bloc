@@ -9,6 +9,7 @@ require_relative '../models/address_book'
  
    def main_menu
      puts "Main Menu - #{address_book.entries.count} entries"
+     puts "0 - View Entry Number n"
      puts "1 - View all entries"
      puts "2 - Create an entry"
      puts "3 - Search for an entry"
@@ -20,6 +21,10 @@ require_relative '../models/address_book'
      
      
      case selection
+       when 0
+           system "clear"
+           view_entry_n
+           main_menu
        when 1
            system "clear"
            view_all_entries
@@ -46,6 +51,21 @@ require_relative '../models/address_book'
            puts "Sorry, that is not a valid input"
            main_menu
      end
+   end
+   
+   def view_entry_n
+        puts "Enter entry number you'd like to view"
+        selection = gets.chomp.to_i
+
+        if selection < @address_book.entries.count
+            puts @address_book.entries[selection]
+            puts "Press enter to return to main menu"
+            gets.chomp
+            system "clear"
+        else
+            puts "#{selection} is not a valid input"
+            view_entry_n
+        end
    end
    
    def view_all_entries
