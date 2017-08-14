@@ -7,6 +7,11 @@ require "csv"
      def initialize
        @entries = []
      end
+     
+   def destroy_all
+       @entries = []
+       puts "All entries have been deleted"  
+   end  
  
    def add_entry(name, phone_number, email)
      # #9
